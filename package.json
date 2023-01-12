@@ -1,0 +1,29 @@
+{
+  "name": "movie_api",
+  "version": "1.0.0",
+  "description": "A tutorial by [CareerFoundry](https://careerfoundry.com) to work with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisDOE7/movie_api.git"
+  },
+  "keywords": [],
+  "author": "ChrisDOE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisDOE7/movie_api/issues"
+  },
+  "homepage": "https://github.com/ChrisDOE7/movie_api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0"
+  }
+}
