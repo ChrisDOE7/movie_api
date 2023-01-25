@@ -1,13 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Movie-API</title>
-</head>
-<body>
-    <h1>Movie App</h1>
-    <p>This web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.</p>
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
+        <title>My Movie-API</title>
+    </head>
+
+    <body>
+        <h1>Movie App</h1>
+        <p>This web application will provide users with access to
+            information about different movies, directors, and genres.
+            Users will be able to sign up, update their personal
+            information, and create a list of their favorite movies.
+        </p>
+
+        <ol>
+            <li>Return a list of ALL movies to the user;</li>
+            <li>Return data (description, genre, director, image URL,
+                whether it’s featured or not) about a single movie by
+                title to the user;</li>
+            <li>Return data about a genre (description) by name/title
+                (e.g., “Thriller”);</li>
+            <li>Return data about a director (bio, birth year, death
+                year) by name;</li>
+            <li>Allow new users to register;</li>
+            <li>Allow users to update their user info (username);</li>
+            <li>Allow users to add a movie to their list of favorites
+                (showing only a text that a movie has been added—more
+                on this later);</li>
+            <li>Allow users to remove a movie from their list of
+                favorites (showing only a text that a movie has been
+                removed—more on this later);</li>
+            <li>Allow existing users to deregister (showing only a
+                text that a user email has been removed—more on this
+                later).</li>
+            <li>Return a list of users;</li>
+        </ol>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Busines Logic</th>
+                    <th>URL</th>
+                    <th>HTTP Method</th>
+                    <th>Request body Data format</th>
+                    <th>Response body Data format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Get All Movies</td>
+                    <td>/movies</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about all movies.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Get A Movies Data By Title</td>
+                    <td>/movies/:title</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about A movies.
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Get Genre And Description By Genre</td>
+                    <td>/movies/genre/:genreName</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about a genre</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Get Informations Of A Director By Name</td>
+                    <td>/directors/:directorsName</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about a director,
+                        such as birthdate, deathday, bio...</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Add A New User</td>
+                    <td>/users</td>
+                    <td>POST</td>
+                    <td>A JSON object contains data about the new
+                        user. <br> eg: <br>{
+                        "name": "Johnny Depp",
+                        "userName": "J.D.",
+                        "email": "jond@gmail.com",
+                        "favoriteMovie": []
+                        }</td>
+                    <td>A JSON object contains data about the new user
+                        including an ID. <br> eg: <br>{
+                        "name": "Johnny Depp",
+                        "userName": "J.D.",
+                        "email": "jond@gmail.com",
+                        "favoriteMovie": [],
+                        "id": "5a5198ad-76a3-47ed-9b21-df966f483e24"
+                        }</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Update Name By ID</td>
+                    <td>users/:id</td>
+                    <td>PUT</td>
+                    <td>A JSON object containing the new name</td>
+                    <td>A JSON object contains data about the updated
+                        user. { id: "1", name: "Michael Doe NEW"}</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Update Favorite Movies By ID and Title</td>
+                    <td>users/:id/:movieTitle</td>
+                    <td>PUT</td>
+                    <td>None</td>
+                    <td>A text message shwoing the movie thats added
+                        to favorites</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Delete A Favorite Movie By ID And Title</td>
+                    <td>users/:id/:movieTitle</td>
+                    <td>DELETE</td>
+                    <td>None</td>
+                    <td>A text message shwoing the movie that's been
+                        deleted from favorites</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Delete User By ID</td>
+                    <td>users/:id</td>
+                    <td>DELETE</td>
+                    <td>None</td>
+                    <td>A text message shwoing that the user has been
+                        derigistered.</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+
 </html>
