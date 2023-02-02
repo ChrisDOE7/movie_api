@@ -16,18 +16,39 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 let users = [
    {
-      id: 1,
-      name: "Kimberly F.",
-      userName: "Kim",
-      email: "kim3925@gmx.com,",
-      favoriteMovies: []
+      Name: "Kimberly F.",
+      Username: "Kim",
+      Birthday: new Date("1983-01-23"),
+      Email: "kim3925@gmx.com",
+      FavoriteMovies: ["Goodfellas", "Pulpfiction"]
    },
    {
-      id: 2,
-      name: "Jonathan J. ",
-      userName: "JJ",
-      email: "joe9523@gmx.com,",
-      favoriteMovies: []
+      Name: "Nick R.",
+      Username: "NR",
+      Birthday: new Date("1981-11-20"),
+      Email: "nr4236@gmx.com",
+      FavoriteMovies: ["Pulpfiction", "The Godfather"]
+   },
+   {
+      Name: "Jonathan J.",
+      Username: "JJ",
+      Birthday: new Date("1992-04-17"),
+      Email: "joe9523@gmx.com",
+      FavoriteMovies: ["The Shawshank Redemption", "Inception"]
+   },
+   {
+      Name: "Jimmy A.",
+      Username: "Jim",
+      Birthday: new Date("1981-01-15"),
+      Email: "jimmy9523@gmx.com",
+      FavoriteMovies: ["Inception", "The Matrix"]
+   },
+   {
+      Name: "Mike L.",
+      Username: "Micky",
+      Birthday: new Date("2002-08-03"),
+      Email: "lmike1239523@gmx.com",
+      FavoriteMovies: ["Titanic", "Goodfellas"]
    }
 ];
 
@@ -42,12 +63,12 @@ let movies = [
       Year: "1999",
       Director: {
          Name: "The Wachowski Brothers",
-         Birthdate: "June 21, 1965",
+         Birthday: "June 21, 1965",
          Movies:
             "The Matrix, The Matrix Reloaded, The Matrix Revolutions, V for Vendetta, Cloud Atlas, Jupiter Ascending"
       },
       Story:
-         "A hacker discovers the truth about his reality and his role in the war against its controllers."
+         "A hacker follows a white rabbit and discovers the truth about his reality and his role in the war against its controllers."
    },
    {
       Title: "Inception",
@@ -55,11 +76,11 @@ let movies = [
       Genre: {
          Name: "Thriller",
          Desription:
-            " A genre that is designed to keep the audience on the edge of their seats with intense, suspenseful, and sometimes disturbing stories. They often involve crime, mystery, and the supernatural."
+            "A genre that is designed to keep the audience on the edge of their seats with intense, suspenseful, and sometimes disturbing stories. They often involve crime, mystery, and the supernatural."
       },
       Director: {
          Name: "Christopher Nolan",
-         Birthdate: "July 30, 1970",
+         Birthday: "July 30, 1970",
          Movies:
             "Following, Memento, Insomnia, Batman Begins, The Prestige, The Dark Knight, Inception, The Dark Knight Rises, Interstellar, Dunkirk, Tenet"
       },
@@ -76,7 +97,7 @@ let movies = [
       Year: "1991",
       Director: {
          Name: "Jonathan Demme",
-         Birthdate: "February 22, 1944",
+         Birthday: "February 22, 1944",
          Deathdate: "April 26, 2017",
          Movies:
             "Melvin and Howard, Swing Shift, Something Wild, Married to the Mob, The Silence of the Lambs, Philadelphia, Beloved"
@@ -94,7 +115,7 @@ let movies = [
       Year: "2003",
       Director: {
          Name: "Peter Jackson",
-         birthdate: "October 31, 1961",
+         Birthday: "October 31, 1961",
          Movies:
             "Bad Taste, Meet the Feebles, Braindead, Heavenly Creatures, The Frighteners, The Lord of the Rings: The Fellowship of the Ring, The Lord of the Rings: The Two Towers, The Lord of the Rings: The Return of the King, King Kong, The Lovely Bones, The Hobbit: An Unexpected Journey, The Hobbit: The Desolation of Smaug, The Hobbit: The Battle of the Five Armies, Mortal Engines"
       },
@@ -111,12 +132,96 @@ let movies = [
       Year: "1984",
       Director: {
          Name: "James Cameron",
-         birthdate: "August 16, 1954",
+         Birthday: "August 16, 1954",
          Movies:
             "Piranha II: The Spawning, The Terminator, Aliens, The Abyss, Terminator 2: Judgment Day, True Lies, Titanic, Ghost of the Abyss, Avatar, Alita: Battle Angel"
       },
       Story:
          "A cyborg assassin is sent back in time to kill Sarah Connor, a woman whose unborn son will lead humanity in a war against machines."
+   },
+   {
+      Title: "The Shawshank Redemption",
+      Genre: {
+         Name: "Drama",
+         Description:
+            "A genre of film that tells a story about human experiences and emotions that is often serious and realistic."
+      },
+      Year: "1994",
+      Director: {
+         Name: "Frank Darabont",
+         Birthday: "January 28, 1959",
+         Movies: "The Shawshank Redemption, The Green Mile, The Mist"
+      },
+      Story:
+         "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+   },
+   {
+      Title: "The Godfather",
+      Genre: {
+         Name: "Crime",
+         Description:
+            "A genre of film that deals with illegal activities and the criminal world, often featuring organized crime and/or criminals as the main characters."
+      },
+      Year: "1972",
+      Director: {
+         Name: "Francis Ford Coppola",
+         Birthday: "April 7, 1939",
+         Movies:
+            "The Godfather, The Godfather: Part II, Apocalypse Now, The Outsiders, The Cotton Club"
+      },
+      Story:
+         "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+   },
+   {
+      Title: "Pulp Fiction",
+      Genre: {
+         Name: "Crime",
+         Description:
+            "A genre of film that deals with illegal activities and the criminal world, often featuring organized crime and/or criminals as the main characters."
+      },
+      Year: "1994",
+      Director: {
+         Name: "Quentin Tarantino",
+         Birthday: "March 27, 1963",
+         Movies:
+            "Reservoir Dogs, Pulp Fiction, Jackie Brown, Kill Bill: Vol. 1, Kill Bill: Vol. 2, Inglourious Basterds, Django Unchained, The Hateful Eight"
+      },
+      Story:
+         "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+   },
+   {
+      Title: "Goodfellas",
+      Genre: {
+         Name: "Crime",
+         Description:
+            "A genre of film that deals with illegal activities and the criminal world, often featuring organized crime and/or criminals as the main characters."
+      },
+      Year: "1990",
+      Director: {
+         Name: "Martin Scorsese",
+         Birthday: "November 17, 1942",
+         Movies:
+            "Mean Streets, Taxi Driver, Raging Bull, The King of Comedy, Goodfellas, Casino, The Departed, The Wolf of Wall Street"
+      },
+      Story:
+         "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate."
+   },
+   {
+      Title: "Titanic",
+      Genre: {
+         Name: "Drama",
+         Description:
+            "A genre of film that tells a story about human experiences and emotions that is often serious and realistic."
+      },
+      Year: "1997",
+      Director: {
+         Name: "James Cameron",
+         Birthday: "August 16, 1954",
+         Movies:
+            "The Terminator, Aliens, The Abyss, Terminator 2: Judgment Day, Titanic, Ghost of the Abyss, Avatar, Alita: Battle Angel"
+      },
+      Story:
+         "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic."
    }
 ];
 
@@ -261,5 +366,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(8080, () => {
-   console.log("Aour app is listening to port 8080.");
+   console.log("Your app is listening to port 8080.");
 });
