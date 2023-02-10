@@ -43,6 +43,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>No.</th>
                     <th>Busines Logic</th>
                     <th>URL</th>
                     <th>HTTP Method</th>
@@ -62,8 +63,8 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Get A Movies Data By Title</td>
-                    <td>/movies/:title</td>
+                    <td>Get A Movie Info By Title</td>
+                    <td>/movies/:Title</td>
                     <td>GET</td>
                     <td>None</td>
                     <td>A JSON object contains data about A movies.
@@ -71,7 +72,7 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Get Genre And Description By Genre</td>
+                    <td>Get Genre And Description By Genrename</td>
                     <td>/movies/genre/:genreName</td>
                     <td>GET</td>
                     <td>None</td>
@@ -92,38 +93,54 @@
                     <td>/users</td>
                     <td>POST</td>
                     <td>A JSON object contains data about the new
-                        user. <br> eg: <br>{
-                        "name": "Johnny Depp",
-                        "userName": "J.D.",
-                        "email": "jond@gmail.com",
-                        "favoriteMovie": []
+                        user. <br> eg: {<br>
+                        "Name": "Frank Furth",<br>
+                        "Username": "Franky84",<br>
+                        "Email": "franky@gmail.com"<br>
                         }</td>
                     <td>A JSON object contains data about the new user
-                        including an ID. <br> eg: <br>{
-                        "name": "Johnny Depp",
-                        "userName": "J.D.",
-                        "email": "jond@gmail.com",
-                        "favoriteMovie": [],
-                        "id": "5a5198ad-76a3-47ed-9b21-df966f483e24"
+                        including an ID. <br> eg: {<br>
+                        "Name": "Max Musterman",<br>
+                        "Username": "MAX",<br>
+                        "Email": "maxymax@gmail.com",<br>
+                        "FavoriteMovies": [],<br>
+                        "_id": "63de45425e7674e04fb959fb",<br>
+                        "__v": 0 <br>
                         }</td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td>Update Name By ID</td>
-                    <td>users/:id</td>
+                    <td>Update A User's Info By Username</td>
+                    <td>/users/:Username</td>
                     <td>PUT</td>
-                    <td>A JSON object containing the new name</td>
+                    <td>A JSON object containing the new name eg {<br>
+                        "Name": " New John Doe", <br>
+                        "Username": " New Micky",<br>
+                        "Email": "newjohndoe@example.com",<br>
+                        "Birthday": "1995-01-01"<br>
+                        }</td>
                     <td>A JSON object contains data about the updated
-                        user. { id: "1", name: "Michael Doe NEW"}</td>
+                        user. eg {<br>
+                        "_id": "63d78ee3c8c69e520631d8ef",<br>
+                        "Name": "New John Doe",<br>
+                        "Username": "New Micky",<br>
+                        "Birthday": "1995-01-01T00:00:00.000Z",<br>
+                        "Email": "newjohndoe@example.com",<br>
+                        "FavoriteMovies": [<br>
+                        "63d788c1c8c69e520631d8ea",
+                        "63d788aac8c69e520631d8e9"
+                        ]<br>
+                        }</td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td>Update Favorite Movies By ID and Title</td>
-                    <td>users/:id/:movieTitle</td>
+                    <td>Update Favorite Movies By Username And MovieID
+                    </td>
+                    <td>/users/:Username/movies/:MovieID</td>
                     <td>PUT</td>
                     <td>None</td>
-                    <td>A text message shwoing the movie thats added
-                        to favorites</td>
+                    <td>A JSON object contains data about the updated
+                        user.</td>
                 </tr>
                 <tr>
                     <td>8</td>
@@ -131,8 +148,8 @@
                     <td>users/:id/:movieTitle</td>
                     <td>DELETE</td>
                     <td>None</td>
-                    <td>A text message shwoing the movie that's been
-                        deleted from favorites</td>
+                    <td>A JSON object contains data about the updated
+                        user.</td>
                 </tr>
                 <tr>
                     <td>9</td>
@@ -142,6 +159,15 @@
                     <td>None</td>
                     <td>A text message shwoing that the user has been
                         derigistered.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Get All Users</td>
+                    <td>/users</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about all users.
+                    </td>
                 </tr>
             </tbody>
         </table>
