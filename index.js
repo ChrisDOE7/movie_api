@@ -1,4 +1,6 @@
-const express = require("express"),
+const express = require("express");
+const { check, validationResult } = require("express-validator"),
+   cors = require("cors"),
    mongoose = require("mongoose"),
    Models = require("./models.js"),
    Movies = Models.Movie,
@@ -10,6 +12,7 @@ const express = require("express"),
    fs = require("fs"),
    path = require("path");
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -251,33 +254,56 @@ let movies = [
 }*/
 
 //CREATE A New User
-app.post("/users", (req, res) => {
-   Users.findOne({ Username: req.body.Username })
-      .then(user => {
-         if (user) {
-            return res.status(400).send(req.body.Username + " already exists");
-         } else {
-            Users.create({
-               Name: req.body.Name,
-               Username: req.body.Username,
-               Email: req.body.Email,
-               Birthday: req.body.Birthday,
-               Password: req.body.Password
-            })
-               .then(user => {
-                  res.status(201).json(user);
+app.post(
+   "/users",
+   [
+      check("Username", "Username is required").isLength({ min: 5 }),
+      check(
+         "Username",
+         "Username contains non alphanumeric characters - not allowed."
+      ).isAlphanumeric(),
+      check("Password", "Password is required")
+         .not()
+         .isEmpty(),
+      check("Email", "Email does not appear to be valid").isEmail()
+   ],
+   (req, res) => {
+      // check the validation object for errors
+      let errors = validationResult(req);
+
+      if (!errors.isEmpty()) {
+         return res.status(422).json({ errors: errors.array() });
+      }
+      let hashedPassword = Users.hashPassword(req.body.Password);
+      Users.findOne({ Username: req.body.Username })
+         .then(user => {
+            if (user) {
+               return res
+                  .status(400)
+                  .send(req.body.Username + " already exists");
+            } else {
+               Users.create({
+                  Name: req.body.Name,
+                  Username: req.body.Username,
+                  Email: req.body.Email,
+                  Birthday: req.body.Birthday,
+                  Password: hashedPassword
                })
-               .catch(error => {
-                  console.error(error);
-                  res.status(500).send("Error: " + error);
-               });
-         }
-      })
-      .catch(error => {
-         console.error(error);
-         res.status(500).send("Error: " + error);
-      });
-});
+                  .then(user => {
+                     res.status(201).json(user);
+                  })
+                  .catch(error => {
+                     console.error(error);
+                     res.status(500).send("Error: " + error);
+                  });
+            }
+         })
+         .catch(error => {
+            console.error(error);
+            res.status(500).send("Error: " + error);
+         });
+   }
+);
 
 //UPDATE A User's Info By Username
 app.put(
@@ -512,6 +538,7 @@ app.use((err, req, res, next) => {
    res.status(500).send("Something broke!");
 });
 
-app.listen(8080, () => {
-   console.log("Your app is listening to port 8080.");
+const port = process.env.PORT || 8080;
+app.listen(port, "0.0.0.0", () => {
+   console.log("Listening on Port " + port);
 });
