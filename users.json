@@ -1,3 +1,6 @@
-{"_id":{"$oid":"63d78eb1c8c69e520631d8ed"},"Name":"Jonathan J.","Username":"JJ","Birthday":{"$date":"1992-04-17T00:00:00Z"},"Email":"joe9523@gmx.com","FavoriteMovies":[{"$oid":"63d78862c8c69e520631d8e6"},{"$oid":"63d787c3c8c69e520631d8e2"}]}
-{"_id":{"$oid":"63d78ecbc8c69e520631d8ee"},"Name":"Jimmy A.","Username":"Jim","Birthday":{"$date":"1981-01-15T00:00:00Z"},"Email":"jimmy9523@gmx.com","FavoriteMovies":[{"$oid":"63d787c3c8c69e520631d8e2"},{"$oid":"63d78797c8c69e520631d8e1"}]}
-{"_id":{"$oid":"63d78ee3c8c69e520631d8ef"},"Name":"Mike L.","Username":"Micky","Birthday":{"$date":"2002-08-03T00:00:00Z"},"Email":"lmike1239523@gmx.com","FavoriteMovies":[{"$oid":"63d788c1c8c69e520631d8ea"},{"$oid":"63d788aac8c69e520631d8e9"}]}
+{"_id":{"$oid":"63d78ee3c8c69e520631d8ef"},"FavoriteMovies":[{"$oid":"63d788c1c8c69e520631d8ea"},{"$oid":"63d788aac8c69e520631d8e9"}]}
+{"_id":{"$oid":"63dced311b70b6fd77fecefc"},"Name":"Kim","Username":"Kim","Email":"kimmykim@gmail.com","FavoriteMovies":[{"$oid":"63d7888ec8c69e520631d8e8"}],"__v":0,"Password":"54321"}
+{"_id":{"$oid":"63de45425e7674e04fb959fb"},"Name":"Max Musterman","Username":"MAX","Email":"maxymax@gmail.com","FavoriteMovies":[],"__v":0,"Password":"abcdefgh"}
+{"_id":{"$oid":"63e607ea632e26b17fa15dff"},"Name":"New Phil Musterman","Username":"New Philly","Email":"newphilly@example.com","Birthday":{"$date":"1995-01-01T00:00:00Z"},"FavoriteMovies":[],"__v":0,"Password":"1234567"}
+{"_id":{"$oid":"63e901be02eae4d03917eb1d"},"Name":"Willy Wonka","Username":"WW","Password":"bibabub","Email":"wwonka@gmail.com","Birthday":{"$date":"1986-12-09T23:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63ea076d69b1ea6ed1c3eaef"},"Name":"Jamy Fonda","Username":"WondaFonda","Password":"$2b$10$cSU2tWeJgsg2tN6S3AVue.e5sQEoKSwYM5DyChWBIi8fx4Hcx05em","Email":"Fondaj@gmail.com","Birthday":{"$date":{"$numberLong":"-740887200000"}},"FavoriteMovies":[],"__v":0}
