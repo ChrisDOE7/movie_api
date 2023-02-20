@@ -1,4 +1,10 @@
+# add .env file to .gitignore
+echo ".env" >> .gitignore
+
 node_modules/
+
 .vscode/
+
 log.txt
+
 exported_collection
