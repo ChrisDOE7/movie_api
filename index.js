@@ -20,14 +20,14 @@ let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
 
-mongoose.connect(process.env.CONNECTION_URI, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true
-});
-// mongoose.connect("mongodb://localhost:27017/test", {
+// mongoose.connect(process.env.CONNECTION_URI, {
 //    useNewUrlParser: true,
 //    useUnifiedTopology: true
 // });
+mongoose.connect("mongodb://localhost:27017/test", {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+});
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
    flags: "a"
@@ -294,7 +294,9 @@ app.post(
                   Password: hashedPassword
                })
                   .then(user => {
-                     res.status(201).json(user);
+                     const { Name, Username, Email } = user;
+                     const userData = { Name, Username, Email };
+                     res.status(201).json(userData);
                   })
                   .catch(error => {
                      console.error(error);
@@ -325,7 +327,7 @@ app.put(
                Birthday: req.body.Birthday
             }
          },
-         { new: true },
+         { new: true, select: "Name Username Birthday Email" },
          (err, updatedUser) => {
             if (err) {
                console.error(err);
@@ -337,6 +339,8 @@ app.put(
       );
    }
 );
+
+//PATCH - Create A User Password
 app.patch(
    "/users/:Username",
    passport.authenticate("jwt", { session: false }),
@@ -367,7 +371,7 @@ app.post(
          {
             $push: { FavoriteMovies: req.params.MovieID }
          },
-         { new: true }, // This line makes sure that the updated document is returned
+         { new: true, select: "Username FavoriteMovies" }, // This line makes sure that the updated document is returned
          (err, updatedUser) => {
             if (err) {
                console.error(err);
@@ -392,7 +396,7 @@ app.delete(
          {
             $pull: { FavoriteMovies: req.params.FavoriteMovies }
          },
-         { new: true },
+         { new: true, select: "Username FavoriteMovies" },
          (err, updatedUser) => {
             if (err) {
                console.error(err);
@@ -453,13 +457,13 @@ app.get(
    "/users",
    passport.authenticate("jwt", { session: false }),
    (req, res) => {
-      Users.find()
+      Users.find({}, "Name Username Birthday Email")
          .then(users => {
             res.status(200).json(users);
          })
          .catch(error => {
-            console.error(err);
-            res.status(500).send("Error: " + err);
+            console.error(error);
+            res.status(500).send("Error: " + error);
          });
    }
 );
@@ -469,9 +473,12 @@ app.get(
    "/users/:Username",
    passport.authenticate("jwt", { session: false }),
    (req, res) => {
-      Users.findOne({ Username: req.params.Username })
+      Users.findOne(
+         { Username: req.params.Username },
+         "Name Username Email FavoriteMovies"
+      )
          .then(user => {
-            res.json(user);
+            res.status(200).json(user);
          })
          .catch(err => {
             console.error(err);
