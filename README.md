@@ -20,3 +20,6 @@ single movie by title to the user
 - Allow users to add a movie to their list of favorites
 - Allow users to remove a movie from their list of favorites
 - Allow existing users to deregister
+- Return a list of users
+
+
