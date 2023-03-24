@@ -384,6 +384,50 @@ app.post(
    }
 );
 
+// Delete a key from a movie by ID
+app.delete(
+   "/movies/:movieId/:keyName",
+   passport.authenticate("jwt", { session: false }),
+   (req, res) => {
+      const movieId = req.params.movieId;
+      const keyName = req.params.keyName;
+
+      Movies.findById(movieId)
+         .then(movie => {
+            if (!movie) {
+               return res
+                  .status(404)
+                  .send(`Movie with ID ${movieId} not found.`);
+            }
+
+            // Check if the key exists in the movie object
+            if (!movie[keyName]) {
+               return res
+                  .status(404)
+                  .send(
+                     `Key ${keyName} not found in movie with ID ${movieId}.`
+                  );
+            }
+
+            // Delete the key from the movie object and save to the database
+            delete movie[keyName];
+            movie
+               .save()
+               .then(updatedMovie => {
+                  res.status(200).json(updatedMovie);
+               })
+               .catch(error => {
+                  console.error(error);
+                  res.status(500).send("Error: " + error);
+               });
+         })
+         .catch(error => {
+            console.error(error);
+            res.status(500).send("Error: " + error);
+         });
+   }
+);
+
 //DELETE Movies From Users Favorite Movies By Username And MovieID
 app.delete(
    "/users/:Username/:FavoriteMovies",
