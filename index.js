@@ -327,7 +327,7 @@ app.put(
                Birthday: req.body.Birthday
             }
          },
-         { new: true, select: "Name Username Birthday Email" },
+         { new: true, select: "Name Username Password Email Birthday" },
          (err, updatedUser) => {
             if (err) {
                console.error(err);
